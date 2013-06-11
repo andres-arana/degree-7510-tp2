@@ -47,7 +47,16 @@ task prepareDocs {
   }
 }
 
-task docs(type: Exec, dependsOn: [ prepareDocs ]) {
+task docs1(type: Exec, dependsOn: [ prepareDocs ]) {
   description "Generate the pdf report"
   commandLine "pdflatex", "--output-directory", "build/docs", "src/docs/informe.tex"
 }
+task docs2(type: Exec, dependsOn: [ docs1 ]) {
+  description "Generate the pdf report"
+  commandLine "pdflatex", "--output-directory", "build/docs", "src/docs/informe.tex"
+}
+task docs(type: Exec, dependsOn: [ docs2 ]) {
+  description "Generate the pdf report"
+  commandLine "pdflatex", "--output-directory", "build/docs", "src/docs/informe.tex"
+}
+
